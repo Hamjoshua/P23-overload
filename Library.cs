@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace app.Matrix
 {
-    public class Matrix2D : IComparable, IComparable<Matrix2D>
+    public abstract class Matrix : ICloneable
+    {
+        public abstract object Clone();
+    }
+
+    public class Matrix2D : Matrix, IComparable, IComparable<Matrix2D>
     {
         private List<List<int>> _items;
         public int RowsLength
@@ -45,6 +53,21 @@ namespace app.Matrix
             }
         }
 
+        public override object Clone()
+        {
+            object figure = null;
+            using (MemoryStream tempStream = new MemoryStream())
+            {
+                BinaryFormatter binFormatter = new BinaryFormatter(null,
+                    new StreamingContext(StreamingContextStates.Clone));
+
+                binFormatter.Serialize(tempStream, this);
+                tempStream.Seek(0, SeekOrigin.Begin);
+
+                figure = binFormatter.Deserialize(tempStream);
+            }
+            return figure;
+        }
         public IEnumerator<List<int>> GetEnumerator()
         {
             return _items.GetEnumerator();
@@ -144,11 +167,11 @@ namespace app.Matrix
             return ThisRow;
         }
 
-        private static Matrix2D _UniteMatrixes(Matrix2D firstMatrix, Matrix2D secondMatrix, bool plus)
+        private static Matrix2D UniteMatrixes(Matrix2D firstMatrix, Matrix2D secondMatrix, bool plus)
         {
             if (firstMatrix.ColumnsLength != secondMatrix.ColumnsLength || firstMatrix.RowsLength != secondMatrix.RowsLength)
             {
-                throw new DifferentMatrixesException();
+                throw new DifferentMatrixesException("Матрицы не совпадают по размеру");
             }
 
             for (int RowIndex = 0; RowIndex < firstMatrix.RowsLength; ++RowIndex)
@@ -166,12 +189,12 @@ namespace app.Matrix
 
         public static Matrix2D operator +(Matrix2D firstMatrix, Matrix2D secondMatrix)
         {
-            return _UniteMatrixes(firstMatrix, secondMatrix, true);
+            return UniteMatrixes(firstMatrix, secondMatrix, true);
         }
 
         public static Matrix2D operator -(Matrix2D firstMatrix, Matrix2D secondMatrix)
         {
-            return _UniteMatrixes(firstMatrix, secondMatrix, true);
+            return UniteMatrixes(firstMatrix, secondMatrix, true);
         }
 
         public static Matrix2D operator *(Matrix2D firstMatrix, Matrix2D secondMatrix)
@@ -181,7 +204,7 @@ namespace app.Matrix
 
             if (FirstColumnCount != SecondRowsCount)
             {
-                throw new DifferentMatrixesException();
+                throw new DifferentMatrixesException("Матрицы не совпадают по размеру");
             }
 
             Matrix2D NewMatrix = new Matrix2D(FirstColumnCount, SecondRowsCount);
@@ -244,8 +267,10 @@ namespace app.Matrix
         {
             if (this.RowsLength != this.ColumnsLength)
             {
-                throw new NotASquareException();
+                throw new NotASquareException("Матрица не квадратная");
             }
+
+
 
             return 1;
         }
