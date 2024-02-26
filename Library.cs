@@ -1,87 +1,74 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 
 namespace app.Matrix
 {
     [Serializable]
-    public abstract class Matrix : ICloneable
+    public class Matrix2D : IComparable, IComparable<Matrix2D>
     {
-        public abstract object Clone();
-    }
-
-    [Serializable]
-    public class Matrix2D : Matrix, IComparable, IComparable<Matrix2D>
-    {
-        private List<List<double>> _items;
+        private double[,] _items;
         public int RowsLength
         {
             get
             {
-                return _items.Count;
+                return _items.GetLength(0);
             }
         }
         public int ColumnsLength
         {
             get
             {
-                return _items[0].Count;
+                return _items.GetLength(1);
             }
         }
 
-        public List<double> this[int RowIndex]
+        public double[] this[int RowIndex]
         {
             get
             {
-                return _items[RowIndex];
+                double[] ThisRow = new double[] { ColumnsLength };
+
+                for(int ColumnIndex = 0; ColumnIndex < ColumnsLength; ++ColumnIndex)
+                {
+                    ThisRow[ColumnIndex] = _items[RowIndex, ColumnIndex];
+                }
+                return ThisRow;
             }
 
-            set
-            {
-                if (value.Count == ColumnsLength)
-                {
-                    _items[RowIndex] = value;
-                }
-                else
-                {
-                    throw new IndexOutOfRangeException();
-                }
-            }
+            //set
+            //{
+            //    if (value.GetLength(0) == ColumnsLength)
+            //    {
+
+            //        _items[RowIndex] = value;
+            //    }
+            //    else
+            //    {
+            //        throw new IndexOutOfRangeException();
+            //    }
+            //}
         }
 
         public double this[int RowIndex, int ColumnIndex]
         {
             get
             {
-                return _items[RowIndex][ColumnIndex];
+                return _items[RowIndex, ColumnIndex];
             }
 
             set
             {
-                _items[RowIndex][ColumnIndex] = value;
+                _items[RowIndex, ColumnIndex] = value;
             }
         }
 
-        public override object Clone()
+        // todo 
+        public Matrix2D Clone()
         {
-            object Figure = null;
-            using (MemoryStream TempStream = new MemoryStream())
-            {
-                BinaryFormatter BinFormatter = new BinaryFormatter(null,
-                    new StreamingContext(StreamingContextStates.Clone));
-
-                BinFormatter.Serialize(TempStream, this);
-                TempStream.Seek(0, SeekOrigin.Begin);
-
-                Figure = BinFormatter.Deserialize(TempStream);
-            }
-            return Figure;
+            return new Matrix2D();
         }
-        public IEnumerator<List<double>> GetEnumerator()
+        public double[,] GetEnumerator()
         {
             return _items.GetEnumerator();
         }
@@ -89,9 +76,9 @@ namespace app.Matrix
         public override string ToString()
         {
             string StringMatrix = "[";
-            List<string> ListOfStringRows = new List<string>();
-            foreach (List<double> Columns in this)
+            for (int RowIndex = 0; RowIndex < RowsLength; ++RowIndex)
             {
+                double[] Columns = this[RowIndex];
                 string StringRows = $"[{String.Join(", ", Columns.ToArray())}]";
                 ListOfStringRows.Add(StringRows);
             }
