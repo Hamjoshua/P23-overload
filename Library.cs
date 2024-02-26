@@ -250,6 +250,21 @@ namespace app.Matrix
             return matrix;
         }
 
+        public static bool operator bool(Matrix2D matrix)
+        {
+            return matrix.RowsLength == matrix.ColumnsLength;
+        }
+
+        public static bool operator true(Matrix2D matrix)
+        {
+            return matrix.RowsLength == matrix.ColumnsLength;
+        }
+
+        public static bool operator false(Matrix2D matrix)
+        {
+            return !(matrix.RowsLength == matrix.ColumnsLength);
+        }
+
         public static Matrix2D operator *(Matrix2D firstMatrix, Matrix2D secondMatrix)
         {
             if (firstMatrix.ColumnsLength != secondMatrix.RowsLength)
