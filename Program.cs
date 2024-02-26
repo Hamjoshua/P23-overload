@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+ï»¿using System;
 using app.Matrix;
 
 namespace program
@@ -11,11 +10,11 @@ namespace program
             Matrix2D Matrix1 = new Matrix2D(3, 3, 10);
             Matrix2D Matrix2 = Matrix1.Clone() as Matrix2D;
 
-            Console.WriteLine($"Ìàòðèöû:\n{Matrix1}\n{Matrix2}\n");
+            Console.WriteLine($"ÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ñ‹:\n{Matrix1}\n{Matrix2}\n");
 
-            Console.WriteLine($"Îáðàòíàÿ ìàòðèöà (ïðè îòðèöàòåëüíîì äåòåðìèíàíòå ïðîñòî âûâîäèò òåêóùóþ ìàòðèöó):\n{Matrix1.Reverse()}\n");
+            Console.WriteLine($"ÐžÐ±Ñ€Ð°Ñ‚Ð½Ð°Ñ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ð° (Ð¿Ñ€Ð¸ Ð¾Ñ‚Ñ€Ð¸Ñ†Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ð¼ Ð´ÐµÑ‚ÐµÑ€Ð¼Ð¸Ð½Ð°Ð½Ñ‚Ðµ Ð¿Ñ€Ð¾ÑÑ‚Ð¾ Ð²Ñ‹Ð²Ð¾Ð´Ð¸Ñ‚ Ñ‚ÐµÐºÑƒÑ‰ÑƒÑŽ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñƒ):\n{Matrix1.Reverse()}\n");
 
-            Console.WriteLine("Ñðàâíåíèå:");
+            Console.WriteLine("Ð¡Ñ€Ð°Ð²Ð½ÐµÐ½Ð¸Ðµ:");
             Console.WriteLine($"Matrix1 > Matrix2 = {Matrix1 > Matrix2}");
             Console.WriteLine($"Matrix1 >= Matrix2 = {Matrix1 >= Matrix2}");
             Console.WriteLine($"Matrix1 < Matrix2 = {Matrix1 < Matrix2}");
@@ -23,20 +22,20 @@ namespace program
             Console.WriteLine($"Matrix1 == Matrix2 = {Matrix1 == Matrix2}\n");
 
             Matrix2 += Matrix1;
-            Console.WriteLine($"Ñëîæåíèå äâóõ ìàòðèö:\n{Matrix2}\n");
+            Console.WriteLine($"Ð¡Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð²ÑƒÑ… Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†:\n{Matrix2}\n");
 
             Matrix2 -= Matrix1;
-            Console.WriteLine($"Âû÷èòàíèå äâóõ ìàòðèö:\n{Matrix2}\n");
+            Console.WriteLine($"Ð’Ñ‹Ñ‡Ð¸Ñ‚Ð°Ð½Ð¸Ðµ Ð´Ð²ÑƒÑ… Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†:\n{Matrix2}\n");
 
             Matrix2 *= Matrix1;
-            Console.WriteLine($"Óìíîæåíèå äâóõ ìàòðèö:\n{Matrix2}\n");
+            Console.WriteLine($"Ð£Ð¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð²ÑƒÑ… Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†:\n{Matrix2}\n");
 
             Matrix2 *= 3;
-            Console.WriteLine($"Óìíîæåíèå ìàòðèöû íà ÷èñëî:\n{Matrix2}\n");
+            Console.WriteLine($"Ð£Ð¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹ Ð½Ð° Ñ‡Ð¸ÑÐ»Ð¾:\n{Matrix2}\n");
 
-            Console.WriteLine($"Äåòåðìèíàíòû:\n{Matrix1.GetDeterminant()}\n{Matrix2.GetDeterminant()}\n");
+            Console.WriteLine($"Ð”ÐµÑ‚ÐµÑ€Ð¼Ð¸Ð½Ð°Ð½Ñ‚Ñ‹:\n{Matrix1.GetDeterminant()}\n{Matrix2.GetDeterminant()}\n");
 
-            Console.WriteLine("Ñðàâíåíèå (ïîñëå âñåõ îïåðàöèé):");
+            Console.WriteLine("Ð¡Ñ€Ð°Ð²Ð½ÐµÐ½Ð¸Ðµ (Ð¿Ð¾ÑÐ»Ðµ Ð²ÑÐµÑ… Ð¾Ð¿ÐµÑ€Ð°Ñ†Ð¸Ð¹):");
             Console.WriteLine($"Matrix1 > Matrix2 = {Matrix1 > Matrix2}");
             Console.WriteLine($"Matrix1 >= Matrix2 = {Matrix1 >= Matrix2}");
             Console.WriteLine($"Matrix1 < Matrix2 = {Matrix1 < Matrix2}");
@@ -45,12 +44,12 @@ namespace program
 
             Matrix1.RemoveColumnAt(0);
             Matrix2.RemoveRowAt(0);
-            Console.WriteLine($"Ïðåîáðàçîâàíèå êâàäðàòíûõ ìàòðèö â ïðÿìîóãîëüíûå:\n{Matrix1}\n{Matrix2}\n");
+            Console.WriteLine($"ÐŸÑ€ÐµÐ¾Ð±Ñ€Ð°Ð·Ð¾Ð²Ð°Ð½Ð¸Ðµ ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚Ð½Ñ‹Ñ… Ð¼Ð°Ñ‚Ñ€Ð¸Ñ† Ð² Ð¿Ñ€ÑÐ¼Ð¾ÑƒÐ³Ð¾Ð»ÑŒÐ½Ñ‹Ðµ:\n{Matrix1}\n{Matrix2}\n");
                         
-            Console.WriteLine($"Óìíîæåíèå 1-îé ìàòðèöû íà 2-óþ:\n{Matrix1 * Matrix2}\n");
-            Console.WriteLine($"Óìíîæåíèå 2-îé ìàòðèöû íà 1-óþ:\n{Matrix2 * Matrix1}\n");
+            Console.WriteLine($"Ð£Ð¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ 1-Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹ Ð½Ð° 2-ÑƒÑŽ:\n{Matrix1 * Matrix2}\n");
+            Console.WriteLine($"Ð£Ð¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ 2-Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹ Ð½Ð° 1-ÑƒÑŽ:\n{Matrix2 * Matrix1}\n");
 
-            Console.WriteLine("Ñëîæåíèå íåêâàäðàòíûõ ìàòðèö: ");
+            Console.WriteLine("Ð¡Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð½ÐµÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚Ð½Ñ‹Ñ… Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†: ");
             try
             {
                 Matrix1 += Matrix2;
@@ -61,7 +60,7 @@ namespace program
                 Console.WriteLine(Error.Message + "\n");
             }
 
-            Console.WriteLine("Äåòåðìèíàíò íåêâàäðàòíîé ìàòðèöû: ");
+            Console.WriteLine("Ð”ÐµÑ‚ÐµÑ€Ð¼Ð¸Ð½Ð°Ð½Ñ‚ Ð½ÐµÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚Ð½Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹: ");
             try
             {                
                 Console.WriteLine(Matrix1.GetDeterminant());

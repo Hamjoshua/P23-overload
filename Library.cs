@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -50,7 +49,7 @@ namespace app.Matrix
                 else
                 {
                     throw new IndexOutOfRangeException();
-                }                
+                }
             }
         }
 
@@ -250,7 +249,7 @@ namespace app.Matrix
             return matrix;
         }
 
-        public static bool operator bool(Matrix2D matrix)
+        public static explicit operator bool(Matrix2D matrix)
         {
             return matrix.RowsLength == matrix.ColumnsLength;
         }
@@ -400,13 +399,13 @@ namespace app.Matrix
                 int RowIndex = 0;
                 while (RowIndex < RowsLength + 1)
                 {
-                    
+
                     if (RowIndex != 0)
                     {
                         int PreviousColumnIndex = RowIndex - 1;
-                        for(int NextRowIndex = 0; NextRowIndex < RowsLength; ++NextRowIndex)
+                        for (int NextRowIndex = 0; NextRowIndex < RowsLength; ++NextRowIndex)
                         {
-                            if(NextRowIndex == PreviousColumnIndex)
+                            if (NextRowIndex == PreviousColumnIndex)
                             {
                                 continue;
                             }
@@ -415,11 +414,11 @@ namespace app.Matrix
                             {
                                 this[NextRowIndex, ColumnIndex] -= this[PreviousColumnIndex, ColumnIndex] * PreviousElement;
                                 OnesMatrix[NextRowIndex, ColumnIndex] -= OnesMatrix[PreviousColumnIndex, ColumnIndex] * PreviousElement;
-                            }                            
-                        }                        
+                            }
+                        }
                     }
 
-                    if(RowIndex == RowsLength)
+                    if (RowIndex == RowsLength)
                     {
                         break;
                     }
@@ -428,7 +427,7 @@ namespace app.Matrix
                     OnesMatrix[RowIndex] = OnesMatrix[RowIndex].Select(x => x / LeadElement).ToList();
 
                     RowIndex++;
-                }                
+                }
                 return OnesMatrix;
             }
 
