@@ -414,11 +414,6 @@ namespace app.Matrix
 
         private static double _GetDeterminant(Matrix2D Matrix)
         {
-            if (Matrix.RowsCount != Matrix.ColumnsCount)
-            {
-                throw new NotASquareException("Матрица не квадратная");
-            }
-
             double Determinant = 0;
 
             if (Matrix.RowsCount == 1)
@@ -446,11 +441,6 @@ namespace app.Matrix
 
         public Matrix2D Reverse()
         {
-            if (RowsCount != ColumnsCount)
-            {
-                throw new NotASquareException("");
-            }
-
             if (GetDeterminant() > 0)
             {
                 Matrix2D OnesMatrix = new Matrix2D(RowsCount, RowsCount);
