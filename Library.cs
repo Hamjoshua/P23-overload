@@ -119,14 +119,14 @@ namespace app.Matrix
                 return 1;
             }
 
-            double ThisDeterminant = this.GetDeterminant();
-            double OtherDeterminant = matrix.GetDeterminant();
+            double ThisMatrixDeterminant = this.GetDeterminant();
+            double OtherMatrixDeterminant = matrix.GetDeterminant();
 
-            if (ThisDeterminant > OtherDeterminant)
+            if (ThisMatrixDeterminant > OtherMatrixDeterminant)
             {
                 return 1;
             }
-            else if (ThisDeterminant < OtherDeterminant)
+            else if (ThisMatrixDeterminant < OtherMatrixDeterminant)
             {
                 return -1;
             }
