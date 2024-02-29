@@ -18,21 +18,4 @@ namespace app.Matrix
         {
         }
     }
-
-    public class NotASquareException : Exception
-    {
-        public NotASquareException()
-        {
-        }
-
-        public NotASquareException(string message)
-            : base(message)
-        {
-        }
-
-        public NotASquareException(string message, Exception inner)
-            : base(message, inner)
-        {
-        }
-    }
 }

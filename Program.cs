@@ -12,8 +12,6 @@ namespace program
 
             Console.WriteLine($"Матрицы:\n{Matrix1}\n{Matrix2}\n");
 
-            Console.WriteLine($"Обратная матрица (при отрицательном детерминанте просто выводит текущую матрицу):\n{Matrix1.Reverse()}\n");
-
             Console.WriteLine("Сравнение:");
             Console.WriteLine($"Matrix1 > Matrix2 = {Matrix1 > Matrix2}");
             Console.WriteLine($"Matrix1 >= Matrix2 = {Matrix1 >= Matrix2}");
@@ -42,33 +40,7 @@ namespace program
             Console.WriteLine($"Matrix1 <= Matrix2 = {Matrix1 <= Matrix2}\n");
             Console.WriteLine($"Matrix1 == Matrix2 = {Matrix1 == Matrix2}\n");
 
-            Matrix1.RemoveColumnAt(0);
-            Matrix2.RemoveRowAt(0);
-            Console.WriteLine($"Преобразование квадратных матриц в прямоугольные:\n{Matrix1}\n{Matrix2}\n");
-                        
-            Console.WriteLine($"Умножение 1-ой матрицы на 2-ую:\n{Matrix1 * Matrix2}\n");
-            Console.WriteLine($"Умножение 2-ой матрицы на 1-ую:\n{Matrix2 * Matrix1}\n");
-
-            Console.WriteLine("Сложение неквадратных матриц: ");
-            try
-            {
-                Matrix1 += Matrix2;
-                Console.WriteLine(Matrix1);
-            }
-            catch(Exception Error)
-            {
-                Console.WriteLine(Error.Message + "\n");
-            }
-
-            Console.WriteLine("Детерминант неквадратной матрицы: ");
-            try
-            {                
-                Console.WriteLine(Matrix1.GetDeterminant());
-            }
-            catch (Exception Error)
-            {
-                Console.WriteLine(Error.Message);
-            }
+            Console.WriteLine($"Обратная матрица (при отрицательном детерминанте просто выводит текущую матрицу):\n{Matrix1.Reverse()}\n");
 
             Console.ReadLine();
         }
